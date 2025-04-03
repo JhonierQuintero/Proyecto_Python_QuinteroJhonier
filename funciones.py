@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta
+from datetime import datetime 
 from archivo_json import *
 import random
+#diccionarios globales que necesitaran las funciones
 clientes={}
 envios={}
 ESTADOS_VALIDOS = ["Recibido", "En Transito", "En Ciudad Destino", "En Bodega De La Transportadora", "En Reparto", "Entregado"]
@@ -90,6 +91,7 @@ def seguir_envio():
     else:
         print("Número de guía no encontrado.")
 
+
 def actualizar_estado_envio():
     """Permite a los trabajadores actualizar el estado de un envío."""
     numero_guia = input("Ingrese el número de guía del envío: ")
@@ -98,9 +100,9 @@ def actualizar_estado_envio():
         for i, estado in enumerate(ESTADOS_VALIDOS, 1):
             print(f"{i}. {estado}")
         try:
-            seleccion = int(input("Seleccione el nuevo estado (número): "))
-            if 1 <= seleccion <= len(ESTADOS_VALIDOS):
-                nuevo_estado = ESTADOS_VALIDOS[seleccion - 1]
+            opcion = int(input("Seleccione el nuevo estado (número): "))
+            if 1 <= opcion <= len(ESTADOS_VALIDOS):
+                nuevo_estado = ESTADOS_VALIDOS[opcion - 1]
                 envios[numero_guia]['estado'] = nuevo_estado
                 print(f"Estado actualizado a '{nuevo_estado}' para el envío {numero_guia}.")
             else:
@@ -109,3 +111,41 @@ def actualizar_estado_envio():
             print("Entrada no válida. Debe ingresar un número.")
     else:
         print("Número de guía no encontrado.")
+
+def imprimir_recibo():
+    """Imprime un recibo con la información del envío."""
+    numero_guia=int(input("ingrese el numero guia del envio:\n"))
+    if numero_guia in envios:
+        envio = envios[numero_guia]
+        remitente = clientes[envio['remitente_id']]
+        destinatario = envio['destinatario']
+        print("\n--- Recibo de Envío ---")
+        print(f"Número de Guía: {envio['numero_guia']}")
+        print(f"Fecha: {envio['fecha']}")
+        print(f"Hora: {envio['hora']}")
+        print(f"Remitente: {remitente['nombres']} {remitente['apellidos']} - ID: {remitente['num_id']}")
+        print(f"Destinatario: {destinatario['nombre']} - ciudad: {destinatario['ciudad']}, barrio: {destinatario['barrio']}")
+        print(f"Estado Actual: {envio['estado']}")
+        print("-----------------------\n")
+    else:
+        print("Número de guía no encontrado.")
+
+def actualizar_informacion_cliente():
+    """Permite a los clientes actualizar su información personal."""
+    num_id = input("Ingrese su número de identificación: ")
+    if num_id in clientes:
+        cliente = clientes[num_id]
+        print("Deje en blanco cualquier campo que no desee cambiar.")
+        nuevos_datos = {
+            "nombres": input(f"Nombres [{cliente['nombres']}]: ") or cliente['nombres'],
+            "apellidos": input(f"Apellidos [{cliente['apellidos']}]: ") or cliente['apellidos'],
+            "tipo_id": input(f"Tipo de identificación [{cliente['tipo_id']}]: ") or cliente['tipo_id'],
+            "direccion": input(f"Dirección [{cliente['direccion']}]: ") or cliente['direccion'],
+            "telefono_fijo": input(f"Teléfono fijo [{cliente['telefono_fijo']}]: ") or cliente['telefono_fijo'],
+            "celular": input(f"Número celular [{cliente['celular']}]: ") or cliente['celular'],
+            "barrio": input(f"Barrio de residencia [{cliente['barrio']}]: ") or cliente['barrio']
+        }
+        clientes[num_id].update(nuevos_datos)
+        print("Información actualizada exitosamente.")
+    else:
+        print("Cliente no encontrado.") 
