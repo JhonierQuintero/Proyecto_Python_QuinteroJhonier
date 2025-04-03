@@ -1,9 +1,11 @@
+'''importar las funciones y las funciones para que funcione los json'''
 from archivo_json import cargado_de_datos,guardado_de_datos
 from funciones import *
 
 cargado_de_datos()
 
 def menu_empleados():
+    '''menu para solo empleados esto dejara alos empleados hecer cosas que no se pueden hacer con el menu principal'''
     print("\n---MENU SOLO EMPLEADOS---")
     print("#1.registro de envio\n#2.actualizar estado de un paquete\n#3.imprimir recibo\n#4. salir")
 
@@ -24,6 +26,7 @@ def menu_empleados():
         print("ERROR ESA OPCION NO EXISTE O HAY UN PROBLEMA INTENTE MAS TARDE")
 
 def menu():
+    '''menu principal para que los usuarios lo utilicen'''
     while True:
         print("\n--- Menú ---")
         print("1. Registrar cliente")

@@ -1,12 +1,14 @@
+'''importacion de las librerias necesarias y modulos'''
 from datetime import datetime 
 from archivo_json import *
 import random
-#diccionarios globales que necesitaran las funciones
+#diccionarios y listas globales que necesitaran las funciones
 clientes={}
 envios={}
 ESTADOS_VALIDOS = ["Recibido", "En Transito", "En Ciudad Destino", "En Bodega De La Transportadora", "En Reparto", "Entregado"]
 
 def registro_usuario():
+    '''aqui los nuevos usuarios podran registrarce'''
     nombres=str(input("ingrese sus nombres:\n")).title()
     apellidos=str(input("ingrese su apellidos:\n")).title()
     numero_identificacion=(input("ingrese su # de identificacion:\n"))
@@ -47,6 +49,7 @@ def registro_usuario():
     print("cliente registrado exitosamente")
     
 def registro_de_envio():
+    '''aqui los empleados registraran la informacion del envio'''
     fecha_envio=datetime.now().strftime('%d-%m-%Y')
     hora_envio=datetime.now().strftime('%H:%M:%S')
     nombre_dest = input("Nombre del destinatario:\n").title()

@@ -1,3 +1,4 @@
+'''se importa la libreria json y del modulo funciones los dos diccionarios'''
 import json
 from funciones import clientes, envios
 
