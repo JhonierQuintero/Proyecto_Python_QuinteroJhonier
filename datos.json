@@ -1,1 +1,1 @@
-{"clientes":{},"envios":{}}
+{"clientes": {"123": {"nombres": "Juan", "apellidos": "Flores", "numero de identificacion": "123", "tipo de identificacion": "TI", "direccion": "123", "barrio de residencia": "123", "telefono fijo": "123", "telefono celular": "123"}}, "envios": {"1725141": {"fecha": "03-04-2025", "hora": "17:23:37", "destinatario": {"nombre": "Pepe", "direccion": "123", "telefono": "123", "ciudad": "123", "barrio": "123"}, "remitente_id": "123", "numero_guia": 1725141, "estado": "Recibido"}}}

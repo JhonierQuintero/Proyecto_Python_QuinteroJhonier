@@ -152,3 +152,36 @@ def actualizar_informacion_cliente():
         print("Información actualizada exitosamente.")
     else:
         print("Cliente no encontrado.") 
+        
+def imprimir_clientes():
+    """Imprime la lista de todos los clientes registrados."""
+    if not clientes:
+        print("No hay clientes registrados.")
+        return
+    
+    print("\n=== Lista de Clientes Registrados ===")
+    for id_cliente, datos in clientes.items():
+        print(f"\nID: {id_cliente} ({datos['tipo de identificacion']})")
+        print(f"Nombre: {datos['nombres']} {datos['apellidos']}")
+        print(f"Dirección: {datos['direccion']}, Barrio: {datos['barrio de residencia']}")
+        print(f"Teléfono Fijo: {datos['telefono fijo']}")
+        print(f"Teléfono Celular: {datos['telefono celular']}")
+    print("=====================================\n")
+
+def imprimir_envios():
+    """Imprime la lista de todos los envíos registrados."""
+    if not envios:
+        print("No hay envíos registrados.")
+        return
+    
+    print("\n=== Lista de Envíos Registrados ===")
+    for num_guia, datos in envios.items():
+        remitente = clientes.get(datos['remitente_id'], {"nombres": "Desconocido", "apellidos": ""})
+        print(f"\nNúmero de Guía: {num_guia}")
+        print(f"Fecha: {datos['fecha']} - Hora: {datos['hora']}")
+        print(f"Remitente: {remitente['nombres']} {remitente['apellidos']} (ID: {datos['remitente_id']})")
+        print(f"Destinatario: {datos['destinatario']['nombre']}")
+        print(f"Dirección: {datos['destinatario']['direccion']}, {datos['destinatario']['barrio']}, {datos['destinatario']['ciudad']}")
+        print(f"Teléfono: {datos['destinatario']['telefono']}")
+        print(f"Estado: {datos['estado']}")
+    print("=====================================\n")

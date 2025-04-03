@@ -7,19 +7,25 @@ cargado_de_datos()
 def menu_empleados():
     '''menu para solo empleados esto dejara alos empleados hecer cosas que no se pueden hacer con el menu principal'''
     print("\n---MENU SOLO EMPLEADOS---")
-    print("#1.registro de envio\n#2.actualizar estado de un paquete\n#3.imprimir recibo\n#4. salir")
+    print("#1.registro de envio\n#2.actualizar estado de un paquete\n#3.imprimir clientes\n#4.imprimir envios\n#5. salir")
 
     opcion=int(input("ingrese la opcion escogida: "))
 
     if opcion==1:
         registro_de_envio()
         guardado_de_datos()
+        menu_empleados()
     elif opcion ==2:
         actualizar_estado_envio()
         guardado_de_datos()
+        menu_empleados()
     elif opcion == 3:
-        imprimir_recibo()
+        imprimir_clientes()
+        menu_empleados()
     elif opcion == 4:
+        imprimir_envios()
+        menu_empleados()    
+    elif opcion == 5:
         print("saliendo del menu solo de empleados")
         menu()
     else:
@@ -29,11 +35,11 @@ def menu():
     '''menu principal para que los usuarios lo utilicen'''
     while True:
         print("\n--- Menú ---")
-        print("1. Registrar cliente")
-        print("2. Seguir envío")
-        print("3. Imprimir recibo")
-        print("4. Actualizar información del cliente")
-        print("5. Salir")
+        print("#1. Registrar cliente")
+        print("#2. Seguir envío")
+        print("#3. Imprimir clientes")
+        print("#4. Actualizar información del cliente")
+        print("#5. Salir")
         opcion = int(input("Seleccione una opción: "))
 
         if opcion == 1:
