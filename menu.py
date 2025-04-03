@@ -4,17 +4,22 @@ from funciones import *
 cargado_de_datos()
 
 def menu_empleados():
-    print("---MENU SOLO EMPLEADOS---")
-    print("#1.registro de envio\n#2.actualizar estado de un paquete\n#3.imprimir recibo")
+    print("\n---MENU SOLO EMPLEADOS---")
+    print("#1.registro de envio\n#2.actualizar estado de un paquete\n#3.imprimir recibo\n#4. salir")
 
-    opcion=int(input("ingrese la opcion escogida"))
+    opcion=int(input("ingrese la opcion escogida: "))
 
     if opcion==1:
         registro_de_envio()
+        guardado_de_datos()
     elif opcion ==2:
         actualizar_estado_envio()
+        guardado_de_datos()
     elif opcion == 3:
         imprimir_recibo()
+    elif opcion == 4:
+        print("saliendo del menu solo de empleados")
+        menu()
     else:
         print("ERROR ESA OPCION NO EXISTE O HAY UN PROBLEMA INTENTE MAS TARDE")
 
@@ -43,7 +48,7 @@ def menu():
             print("Saliendo del programa.")
             break
         elif opcion == 12345:
-            menu_empleados
+            menu_empleados()
         else:
             print("Opción no válida.")
 

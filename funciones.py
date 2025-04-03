@@ -61,10 +61,10 @@ def registro_de_envio():
         "ciudad": ciudad_dest,
         "barrio": barrio_dest
     }
-    remitente_id = input("Número de identificación del remitente:\n")
+    remitente_id = str(input("Número de identificación del remitente:\n"))
     if remitente_id not in clientes:
         print("El remitente no está registrado.")
-        return
+        return 
     numero_guia = random.randint(1000000,10000000)
     envio = {
         "fecha": fecha_envio,
@@ -79,13 +79,13 @@ def registro_de_envio():
 
 def seguir_envio():
     """Busca un envío por su número de guía y muestra su información."""
-    numero_guia = input("Ingrese el número de guía: ")
+    numero_guia = int(input("Ingrese el número de guía: "))
     if numero_guia in envios:
         envio = envios[numero_guia]
         print(f"Envío {numero_guia}:")
         print(f"Fecha: {envio['fecha']}")
         print(f"Hora: {envio['hora']}")
-        print(f"Destinatario: {envio['destinatario']['nombre']} - {envio['destinatario']['ciudad']}, {envio['destinatario']['barrio']}")
+        print(f"Destinatario: {envio['destinatario']['nombre']} - ciudad: {envio['destinatario']['ciudad']}, barrio: {envio['destinatario']['barrio']}")
         print(f"Remitente: {clientes[envio['remitente_id']]['nombres']} {clientes[envio['remitente_id']]['apellidos']} - ID: {envio['remitente_id']}")
         print(f"Estado: {envio['estado']}")
     else:
@@ -94,7 +94,7 @@ def seguir_envio():
 
 def actualizar_estado_envio():
     """Permite a los trabajadores actualizar el estado de un envío."""
-    numero_guia = input("Ingrese el número de guía del envío: ")
+    numero_guia = str(input("Ingrese el número de guía del envío: "))
     if numero_guia in envios:
         print("Estados válidos:")
         for i, estado in enumerate(ESTADOS_VALIDOS, 1):
@@ -114,7 +114,7 @@ def actualizar_estado_envio():
 
 def imprimir_recibo():
     """Imprime un recibo con la información del envío."""
-    numero_guia=int(input("ingrese el numero guia del envio:\n"))
+    numero_guia=str(input("ingrese el numero guia del envio:\n"))
     if numero_guia in envios:
         envio = envios[numero_guia]
         remitente = clientes[envio['remitente_id']]
@@ -123,7 +123,7 @@ def imprimir_recibo():
         print(f"Número de Guía: {envio['numero_guia']}")
         print(f"Fecha: {envio['fecha']}")
         print(f"Hora: {envio['hora']}")
-        print(f"Remitente: {remitente['nombres']} {remitente['apellidos']} - ID: {remitente['num_id']}")
+        print(f"Remitente: {remitente['nombres']} {remitente['apellidos']} - ID: {remitente['numero de identificacion']}")
         print(f"Destinatario: {destinatario['nombre']} - ciudad: {destinatario['ciudad']}, barrio: {destinatario['barrio']}")
         print(f"Estado Actual: {envio['estado']}")
         print("-----------------------\n")
@@ -139,11 +139,11 @@ def actualizar_informacion_cliente():
         nuevos_datos = {
             "nombres": input(f"Nombres [{cliente['nombres']}]: ") or cliente['nombres'],
             "apellidos": input(f"Apellidos [{cliente['apellidos']}]: ") or cliente['apellidos'],
-            "tipo_id": input(f"Tipo de identificación [{cliente['tipo_id']}]: ") or cliente['tipo_id'],
+            "tipo de identificacion": input(f"Tipo de identificación [{cliente['tipo de identificacion']}]: ") or cliente['tipo de identificacion'],
             "direccion": input(f"Dirección [{cliente['direccion']}]: ") or cliente['direccion'],
-            "telefono_fijo": input(f"Teléfono fijo [{cliente['telefono_fijo']}]: ") or cliente['telefono_fijo'],
-            "celular": input(f"Número celular [{cliente['celular']}]: ") or cliente['celular'],
-            "barrio": input(f"Barrio de residencia [{cliente['barrio']}]: ") or cliente['barrio']
+            "telefono fijo": input(f"Teléfono fijo [{cliente['telefono fijo']}]: ") or cliente['telefono fijo'],
+            "telefono celular": input(f"Número celular [{cliente['telefono celular']}]: ") or cliente['telefono celular'],
+            "barrio de residencia": input(f"Barrio de residencia [{cliente['barrio de residencia']}]: ") or cliente['barrio de residencia']
         }
         clientes[num_id].update(nuevos_datos)
         print("Información actualizada exitosamente.")
