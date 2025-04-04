@@ -1,5 +1,5 @@
 '''importacion de las librerias necesarias y modulos'''
-from datetime import datetime 
+from datetime import datetime,timedelta
 from archivo_json import *
 import random
 #diccionarios y listas globales que necesitaran las funciones
@@ -152,7 +152,7 @@ def actualizar_informacion_cliente():
         print("Información actualizada exitosamente.")
     else:
         print("Cliente no encontrado.") 
-        
+
 def imprimir_clientes():
     """Imprime la lista de todos los clientes registrados."""
     if not clientes:
@@ -185,3 +185,22 @@ def imprimir_envios():
         print(f"Teléfono: {datos['destinatario']['telefono']}")
         print(f"Estado: {datos['estado']}")
     print("=====================================\n")
+
+def informe_volumen_envios(dias):
+    """Genera un informe sobre el volumen de envíos en los últimos días."""
+    fecha_limite = datetime.now() - timedelta(days=dias)
+    total_envios = 0
+    envios_periodo = {}
+    
+    for num_guia, envio in envios.items():
+        fecha_envio = datetime.strptime(envio['fecha'], '%d-%m-%Y')
+        if fecha_envio >= fecha_limite:
+            total_envios += 1
+            mes = fecha_envio.strftime('%Y-%m')
+            envios_periodo[mes] = envios_periodo.get(mes, 0) + 1
+    
+    print(f"\n=== Informe de Volumen de Envíos (Últimos {dias} días) ===")
+    print(f"Total de envíos: {total_envios}")
+    for mes, cantidad in envios_periodo.items():
+        print(f"Mes {mes}: {cantidad} envíos")
+    print("=====================================================\n")
