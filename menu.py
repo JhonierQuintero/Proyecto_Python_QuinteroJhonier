@@ -19,6 +19,7 @@ def menu_empleados():
             guardado_de_datos()
         elif opcion == 2:
             registro_usuario()
+            guardado_de_datos()
         elif opcion == 3:
             actualizar_informacion_cliente()
         elif opcion ==4:
@@ -43,7 +44,7 @@ def menu_administrador():
         print("#4. Imprimir todos los envíos")
         print("#5. Informe de volumen de envíos")
         print("#6. actualizar informacion cliente")
-        print("#9. salir")
+        print("#7. salir")
         opcion = int(input("Seleccione una opción: "))
         
         if opcion == 1:
@@ -57,8 +58,8 @@ def menu_administrador():
         elif opcion == 4:
             imprimir_envios()
         elif opcion == 5:
+            dias=int(input("ingrese el numero de dias que quiera el informe: "))
             informe_volumen_envios(dias)
-            dias=int(input("ingrese el numero de dias que quiera el informe")) 
         elif opcion == 6:
             actualizar_informacion_cliente()
         elif opcion == 7:

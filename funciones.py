@@ -82,7 +82,7 @@ def registro_de_envio():
 
 def seguir_envio():
     """Busca un envío por su número de guía y muestra su información."""
-    numero_guia = int(input("Ingrese el número de guía: "))
+    numero_guia = str(input("Ingrese el número de guía: "))
     if numero_guia in envios:
         envio = envios[numero_guia]
         print(f"Envío {numero_guia}:")
@@ -196,7 +196,7 @@ def informe_volumen_envios(dias):
         fecha_envio = datetime.strptime(envio['fecha'], '%d-%m-%Y')
         if fecha_envio >= fecha_limite:
             total_envios += 1
-            mes = fecha_envio.strftime('%Y-%m')
+            mes = fecha_envio.strftime('%Y-%m-%d')
             envios_periodo[mes] = envios_periodo.get(mes, 0) + 1
     
     print(f"\n=== Informe de Volumen de Envíos (Últimos {dias} días) ===")
