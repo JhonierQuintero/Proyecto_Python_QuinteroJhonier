@@ -75,7 +75,7 @@ def menu():
         print("\n--- Menú ---")
         print("#1. Registrarce")
         print("#2. Seguir envío")
-        print("#3. Imprimir recibo del envio")
+        print("#3. Imprimir recibo del pedido")
         print("#4. Actualizar tu información")
         print("#5. Salir")
         opcion = int(input("Seleccione una opción: "))
